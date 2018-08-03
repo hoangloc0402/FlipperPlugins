@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.facebook.sonar:fbjni-0.6.13">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fbjni-0.6.13.aar/509614e5c41a9ab211b8563838103aed/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fbjni-0.6.13.aar/509614e5c41a9ab211b8563838103aed/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.sonar/fbjni/0.6.13/39fe8e90d3f0fd1e88affd9d9183a393a010f706/fbjni-0.6.13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.facebook.sonar:sonar-0.6.13">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sonar-0.6.13.aar/f98fad34b36ec977230ee64783270447/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/sonar-0.6.13.aar/f98fad34b36ec977230ee64783270447/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.sonar/sonar/0.6.13/62f1070da245f068856bb9f36e54d96e36d40eb0/sonar-0.6.13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
