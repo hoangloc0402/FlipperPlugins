@@ -1,5 +1,6 @@
 package com.hoangloc.flipperplugins;
 
+import android.content.Intent;
 import android.util.Log;
 import com.facebook.litho.ClickEvent;
 import com.facebook.litho.Column;
@@ -9,6 +10,8 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.OnEvent;
 import com.facebook.litho.widget.Text;
+import com.facebook.sonar.android.diagnostics.SonarDiagnosticActivity;
+
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -21,7 +24,7 @@ import okhttp3.Response;
 public class RootComponentSpec {
 
     @OnCreateLayout
-    static Component onCreateLayout(ComponentContext c) {
+    static Component onCreateLayout(final ComponentContext c) {
         return Column.create(c)
                 .child(
                         Text.create(c)
@@ -35,67 +38,76 @@ public class RootComponentSpec {
                                 .key("2")
                                 .textSizeSp(20)
                                 .clickHandler(RootComponent.hitPostRequest(c)))
-                .child(
-                        Text.create(c)
-                                .text("I'm just some text")
-                                .key("3")
-                                .textSizeSp(20))
+                .child(Text.create(c)
+                        .text("Diagnose connection issues")
+                        .key("3")
+                        .textSizeSp(20)
+                        .clickHandler(RootComponent.openDiagnostics(c)))
                 .build();
     }
 
     @OnEvent(ClickEvent.class)
-    static void hitGetRequest(ComponentContext c) {
+    static void hitGetRequest(final ComponentContext c) {
 
-        Request request = new Request.Builder()
-                .url("https://api.github.com/repos/facebook/yoga")
-                .get()
-                .build();
-        MyApplication.okhttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.d("Flipper", e.getMessage());
-            }
+        final Request request =
+                new Request.Builder().url("https://api.github.com/repos/facebook/yoga").get().build();
+        MyApplication.okhttpClient
+                .newCall(request)
+                .enqueue(
+                        new Callback() {
+                            @Override
+                            public void onFailure(final Call call, final IOException e) {
+                                e.printStackTrace();
+                                Log.d("Flipper", e.getMessage());
+                            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    Log.d("Flipper", response.body().string());
-                } else {
-                    Log.d("Flipper", "not successful");
-                }
-            }
-        });
+                            @Override
+                            public void onResponse(final Call call, final Response response) throws IOException {
+                                if (response.isSuccessful()) {
+                                    Log.d("Flipper", response.body().string());
+                                } else {
+                                    Log.d("Flipper", "not successful");
+                                }
+                            }
+                        });
     }
 
     @OnEvent(ClickEvent.class)
-    static void hitPostRequest(ComponentContext c) {
+    static void hitPostRequest(final ComponentContext c) {
 
-        RequestBody formBody = new FormBody.Builder()
-                .add("app", "Flipper")
-                .add("remarks", "Its awesome")
-                .build();
+        final RequestBody formBody =
+                new FormBody.Builder().add("app", "Flipper").add("remarks", "Its awesome").build();
 
-        Request request = new Request.Builder()
-                .url("https://demo9512366.mockable.io/SonarPost")
-                .post(formBody)
-                .build();
+        final Request request =
+                new Request.Builder()
+                        .url("https://demo9512366.mockable.io/SonarPost")
+                        .post(formBody)
+                        .build();
 
-        MyApplication.okhttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                Log.d("Flipper", e.getMessage());
-            }
+        MyApplication.okhttpClient
+                .newCall(request)
+                .enqueue(
+                        new Callback() {
+                            @Override
+                            public void onFailure(final Call call, final IOException e) {
+                                e.printStackTrace();
+                                Log.d("Flipper", e.getMessage());
+                            }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    Log.d("Flipper", response.body().string());
-                } else {
-                    Log.d("Flipper", "not successful");
-                }
-            }
-        });
+                            @Override
+                            public void onResponse(final Call call, final Response response) throws IOException {
+                                if (response.isSuccessful()) {
+                                    Log.d("Flipper", response.body().string());
+                                } else {
+                                    Log.d("Flipper", "not successful");
+                                }
+                            }
+                        });
+    }
+
+    @OnEvent(ClickEvent.class)
+    static void openDiagnostics(final ComponentContext c) {
+        Intent intent = new Intent(c, SonarDiagnosticActivity.class);
+        c.startActivity(intent);
     }
 }

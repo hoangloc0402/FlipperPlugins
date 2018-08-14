@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.facebook.flipper:fbjni-0.6.17">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fbjni-0.6.17.aar/7421d70abf7d2042c4394405e5b113f8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/fbjni-0.6.17.aar/7421d70abf7d2042c4394405e5b113f8/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.flipper/fbjni/0.6.17/85df04a563a33fca504e587a452ce88ccc07a76f/fbjni-0.6.17-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

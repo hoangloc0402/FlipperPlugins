@@ -1,19 +1,12 @@
 package com.hoangloc.flipperplugins;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
 //                        .into(imageView);
 //            }
 //        });
+
+
         getSharedPreferences("sample", Context.MODE_PRIVATE).edit().putString("3", "modify").apply();
+        startActivity(new Intent(this, SubActivity.class));
+
     }
-
-
-
-
 }
