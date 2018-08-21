@@ -2,12 +2,14 @@ package com.hoangloc.flipperplugins;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.facebook.litho.sonar.LithoSonarDescriptors;
 import com.facebook.soloader.SoLoader;
 import com.facebook.sonar.android.AndroidSonarClient;
 import com.facebook.sonar.core.SonarClient;
 import com.facebook.sonar.core.SonarConnection;
+import com.facebook.sonar.core.SonarObject;
 import com.facebook.sonar.core.SonarPlugin;
 import com.facebook.sonar.plugins.inspector.DescriptorMapping;
 import com.facebook.sonar.plugins.inspector.InspectorSonarPlugin;
@@ -27,6 +29,7 @@ import okhttp3.OkHttpClient;
 
 public class MyApplication extends Application {
     public static OkHttpClient okhttpClient;
+    public static SharedPreferences.Editor SPeditor;
 
     @Override
     public void onCreate() {
@@ -47,16 +50,22 @@ public class MyApplication extends Application {
                 .build();
 
         LithoSonarDescriptors.add(descriptorMapping);
-        client.addPlugin(new InspectorSonarPlugin(getApplicationContext(), descriptorMapping));
-        client.addPlugin(networkPlugin);
+//        client.addPlugin(new InspectorSonarPlugin(getApplicationContext(), descriptorMapping));
+//        client.addPlugin(networkPlugin);
         client.addPlugin(new SharedPreferencesSonarPlugin(this, "sample"));
-        client.addPlugin(new LeakCanarySonarPlugin());
+//        client.addPlugin(new LeakCanarySonarPlugin());
+//
+//        RefWatcher refWatcher = LeakCanary.refWatcher(this)
+//                .listenerServiceClass(RecordLeakService.class).buildAndInstall();
 
-        RefWatcher refWatcher = LeakCanary.refWatcher(this)
-                .listenerServiceClass(RecordLeakService.class).buildAndInstall();
+
+        LocsPlugin locsPlugin = new LocsPlugin();
+        client.addPlugin(locsPlugin);
+
+
 
         client.start();
-
+        SPeditor = getSharedPreferences("sample", Context.MODE_PRIVATE).edit();
         getSharedPreferences("sample", Context.MODE_PRIVATE).edit().putString("0", "world").apply();
         getSharedPreferences("sample", Context.MODE_PRIVATE).edit().putString("1", "world").apply();
         getSharedPreferences("sample", Context.MODE_PRIVATE).edit().putString("2", "world").apply();

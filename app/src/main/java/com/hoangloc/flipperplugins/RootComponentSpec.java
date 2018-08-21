@@ -1,5 +1,6 @@
 package com.hoangloc.flipperplugins;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import com.facebook.litho.ClickEvent;
@@ -48,6 +49,7 @@ public class RootComponentSpec {
 
     @OnEvent(ClickEvent.class)
     static void hitGetRequest(final ComponentContext c) {
+        MyApplication.SPeditor.putString("3", "worlddddd").apply();
 
         final Request request =
                 new Request.Builder().url("https://api.github.com/repos/facebook/yoga").get().build();

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         getSharedPreferences("sample", Context.MODE_PRIVATE).edit().putString("3", "modify").apply();
-        startActivity(new Intent(this, SubActivity.class));
+        //startActivity(new Intent(this, SubActivity.class));
 
     }
 }
